@@ -16,12 +16,17 @@ document.addEventListener('DOMContentLoaded', function () {
         msg.appendChild(content);
         body.appendChild(msg);
         window.setTimeout(function () {
-            document.getElementById(id).fadeTo(500, 0).slideUp(500, function () {
-                this.remove();
-            });
+            var element = document.getElementById(id);
+            element.style.transition = "opacity 0.5s, height 0.5s";
+            element.style.opacity = 0;
+            element.style.height = "0";
+        
+            // After the animation, remove the element from the DOM
+            setTimeout(function () {
+                element.remove();
+            }, 500);
         }, 1500);
-    };
-
+    };      
     // true on MS windows. used to set EOL
     var iswin = (navigator.appVersion.indexOf("Win") != -1);
 
